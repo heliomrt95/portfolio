@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio Website</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="icon" type="image/png" href="icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Playwrite+DE+Grund:wght@100..400&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"/>
+  </head>
+  <body>
+
+    <div id="form-overlay"></div> <!-- Fond flou -->
+
+<form id="contact-form" action="send_email.php" method="post">
+  <input type="text" name="name" placeholder="Votre nom" required>
+  <input type="email" name="email" placeholder="Votre email" required>
+  <textarea name="message" placeholder="Votre message" required></textarea>
+  <div class="form-buttons">
+    <button type="submit">Envoyer</button>
+    <button type="button" id="cancel-form-btn">Annuler</button>
+  </div>
+</form>
+
+    <header class="header">
+
+      <a href="#home" class="logo">
+                Helio <span>Martone</span>
+      </a>
+
+      <i class="bx bx-menu" id="menu-icon"></i>   
+      
+      <nav class="navbar">
+        <a href="#home">Home</a>
+        <a href="#about">Parcours</a>
+        <a href="#services">Compétences</a>
+        <a href="#projects">Projets</a>
+      </nav>
+
+      <button class="gradiant-btn contact-btn" id="contact-btn">Me Contacter</button>
+    </header>
+
+    <section class="home" id="home">
+      <div class="home-content">
+          <h1>Bonjour ! <br>moi c'est <span>Helio</span></h1>
+          <h3>
+            je souhaiterai devenir <span>Developpeur Web</span>
+          </h3>
+          <p>
+            Jeune de 18 ans et passionné d'informatique depuis toujours, je nourris depuis mes 11 ans le rêve de devenir développeur web. Cette passion s'est traduite par la réalisation de divers sites web pour des amis et des projets personnels, me permettant d'expérimenter et de perfectionner mes compétences.          </p>
+
+          <div class="social-icons">
+            <a href="mailto:helio.martone13@gmail.com" target="_blank">
+              <i class="bx bxs-envelope"></i>
+            </a>
+
+            <a href="https://wa.me/33645407273" target="_blank">
+              <i class="bx bxl-whatsapp"></i>
+            </a>
+
+            <a href="tel:+33645407273" target="_blank">
+              <i class="bx bxs-phone"></i>
+            </a>
+
+            <a href="https://www.instagram.com/helio_mrt/" target="_blank">
+              <i class="bx bxl-instagram-alt"></i>
+            </a>
+
+          </div>
+<div class="btn-group">
+<a href="#" class="btn" id="show-form-btn">M'écrire</a>
+</div>
+</div>
+          
+<div class="home-img">
+<img src="image.jpg" alt="">
+</div>
+      
+</section>
+
+<section class="about" id="about">
+      
+<div class="about-img">
+<img src="image2.png" alt="">
+</div>
+
+<div class="about-content">
+<h2>Mon <span>Parcours</span></h2>
+<p>Mon parcours scolaire, d'abord en STI2D en 1ère puis en Terminale avec une spécialisation en SIN (Systèmes Informatiques et Numériques), témoigne de ma volonté d'approfondir mes connaissances dans le domaine. J'ai également présenté un exposé sur l'informatique lors de l'oral du brevet, ce qui m'a permis de partager mon enthousiasme et d'améliorer mes aptitudes à communiquer.</p>
+</div>
+
+</section>
+
+<section class="services" id="services">
+
+<h2 class="heading"><span>Compétences</span></h2>
+
+<div class="services-container">
+
+<div class="service-box">
+<div class="service-info">
+<i class="bx bxl-html5"></i>
+<h4>HTML</h4>
+<p>Je maîtrise le HTML depuis mes débuts à 12 ans, 
+  où j'ai appris les bases de la création de sites web. 
+  Cette compétence est devenue un pilier de mon parcours 
+  en développement web.</p>
+</div>
+</div>
+
+<div class="service-box">
+<div class="service-info">
+<i class="bx bxl-css3"></i>
+<h4>CSS</h4>
+<p>
+  J'ai acquis une solide maîtrise du CSS, 
+  me permettant de créer des designs attrayants 
+  et réactifs. J'ai commencé à l'apprendre à 12 ans, 
+  et j'ai continué à perfectionner mes compétences 
+  au fil des projets.</p>
+</p>
+</div>
+</div>
+
+<div class="service-box">
+  <div class="service-info">
+  <i class="bx bxl-javascript"></i>
+  <h4>JavaScript</h4>
+  <p>
+    J'ai commencé à apprendre JavaScript à 14 ans, 
+    Bien que je ne le maîtrise pas aussi bien que le HTML et le CSS. 
+    je l'utilise pour ajouter de l'interactivité et des fonctionnalités 
+    avancées à mes projets web.
+  </p>
+  </div>
+  </div>
+
+</div>
+</section>
+
+<section class="projects" id="projects">
+
+<h2 class="heading"><span>Projets</span></h2>
+
+<div class="projects-box">
+
+<div class="project-card">
+  <a href="https://one-piece-website.sc1cide7464.universe.wf" target="_blank">
+    <img src="one piece.png" alt="One Piece Website">
+  </a>
+  <h3>One Piece Website</h3>
+
+  <p>Un projet realisé en 2024, 
+    de ma propre volonté.
+    Il s'agit d'un site web dédié à la série
+    One Piece, permettant de découvrir
+    les personnages, les épisodes et les films.
+    Le site est conçu pour être interactif et
+    convivial, offrant une expérience immersive.
+  </p>
+  <a href="https://one-piece-website.sc1cide7464.universe.wf" target="_blank" class="btn">Aller voir</a>
+</div>
+
+<div class="project-card">
+  <a href="http://streaming-creative.sc1cide7464.universe.wf/" target="_blank">
+    <img src="netflix.png" alt="Streaming Creative">
+  </a>
+  <h3>Streaming Creative</h3>
+
+  <p>
+    Un site de streaming fictif proposant des films 
+    imaginaires, avec un design original et une expérience 
+    utilisateur immersive. Ce projet a été conçu pour 
+    explorer les concepts de design moderne et les 
+    fonctionnalités interactives, tout en offrant une 
+    navigation fluide et intuitive.
+  </p>
+  <a href="http://streaming-creative.sc1cide7464.universe.wf/" target="_blank" class="btn">Aller voir</a>
+</div>
+
+<div class="project-card">
+  <a href="https://japan-website.sc1cide7464.universe.wf" target="_blank">
+    <img src="jap.png" alt="Japan Website">
+  </a>
+  <h3>Japan Website</h3>
+
+  <p>Ce projet est en cours de réalisation. 
+    Actuellement, seule la page d'accueil est terminée. 
+    Le site vise à explorer la culture japonaise, 
+    mettant en avant les traditions, la cuisine, 
+    et les lieux emblématiques du Japon.
+  </p>
+  <a href="https://japan-website.sc1cide7464.universe.wf" class="btn" target="_blank">Aller voir</a>
+</div>
+
+<div class="project-card pizza-card">
+  <a href="#">
+    <img src="pizza.png" alt="Pizzeria Website">
+  </a>
+  <h3>Pizzeria Website</h3>
+
+  <p>Ce projet n'est pas encore réalisé. Il s'agira 
+    d'un site web pour la pizzeria de mon frère, 
+    mettant en avant le menu, les offres spéciales et 
+    permettant de passer des commandes en ligne. 
+    Restez à l'écoute pour plus de détails !
+  </p>
+  <div class="btn-disappear">Bientôt Disponible</div>
+</div>
+
+<div class="project-card">
+  <a href="https://www.h2okite.com/" target="_blank">
+    <img src="h2o.png" alt="H2O Kite">
+  </a>
+  <h3>H2O Kite</h3>
+
+  <p>Un site réalisé pour mon travail d'été, 
+    que j'ai peaufiné entièrement bénévolement. 
+    Ce projet m'a permis de mettre en pratique 
+    mes compétences en développement web tout 
+    en contribuant à une cause qui me tenait à cœur.
+  </p>
+  <a class="btn" href="https://www.h2okite.com/" target="_blank">Aller voir</a>
+</div>
+
+<div class="project-card">
+    <img src="musée.png" alt="Musée des Traditions">
+  <h3>Musée des Traditions</h3>
+
+  <p>Site du Musée des Traditions de Biscarrosse, 
+    également la ville où j'habite. Ce site est à 
+    refaire avec un camarade de classe bénévolement, 
+    sous la demande de notre professeur de SIN.
+  </p>
+  <a class="btn" href="https://www.museetraditions.com/index.php?option=com_contact&view=contact&id=1&Itemid=59" target="_blank">Aller voir</a>
+</div>
+</div>
+
+</section>
+
+<footer class="footer">
+  <div class="social-icons">
+    <a href="mailto:helio.martone13@gmail.com" target="_blank">
+      <i class="bx bxs-envelope"></i>
+    </a>
+
+    <a href="https://wa.me/33645407273" target="_blank">
+      <i class="bx bxl-whatsapp"></i>
+    </a>
+
+    <a href="tel:+33645407273" target="_blank">
+      <i class="bx bxs-phone"></i>
+    </a>
+
+    <a href="https://www.instagram.com/helio_mrt/" target="_blank">
+      <i class="bx bxl-instagram-alt"></i>
+    </a>
+
+  </div>
+  <ul class="list">
+    <li>
+      <a class="FAQ" href="#FAQ">FAQ</a>
+    </li>
+    <li>
+      <a href="#about">Parcours</a>
+    </li>
+    <li>
+      <a href="#services">Compétences</a>
+    </li>
+    <li>
+      <a href="#projects">Projets</a>
+    </li>
+  </ul>
+  <p class="copyright">
+    © 2025 Helio Martone. Tous droits réservés.
+  </p>
+</footer>
+
+<script src="script.js"></script>
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+  (function () {
+    emailjs.init("service_jb956ot"); // Remplacez par votre User ID EmailJS
+  })();
+</script>
+</body>
+</html>

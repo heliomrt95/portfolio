@@ -1,0 +1,931 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  scroll-behavior: smooth;
+  font-family: "Poppins";
+}
+:root {
+  --bg-color: #BECEDE;
+  --second-bg-color: #7f9ba0;
+  --text-color: white;
+  --main-color: #798aa3;
+}
+html {
+  font-size: 60%;
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--bg-color);
+  color: var(--text-color);
+}
+
+.header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  padding: 4rem 15%;
+  background: rgba(83, 114, 122, 0.3);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+  border-bottom-left-radius: 25%;
+  border-bottom-right-radius: 15%;
+  animation: slideDown 2s ease-in-out forwards;
+  animation-delay: 0.2s; /* Décalage pour synchroniser avec les éléments de la section home */
+}
+
+#menu-icon {
+  font-size: 3.5rem;
+  display: none;
+}
+
+.logo {
+  font-size: 3rem;
+  color: var(--text-color);
+  font-weight: 800;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.logo:hover {
+  transform: scale(1.1);
+}
+
+span {
+  background: linear-gradient(90deg, #798aa3, #2d3035, #798aa3);
+  background-size: 250% 100%; /* Étend la taille pour un défilement fluide */
+  background-clip: text;
+  -webkit-background-clip: text; /* Nécessaire pour les navigateurs Webkit */
+  color: transparent; /* Rendre le texte transparent pour afficher le dégradé */
+  animation: gradientScroll 8s linear infinite alternate; /* Animation fluide avec effet boomerang */
+}
+
+.navbar a {
+  position: relative; /* Nécessaire pour positionner le pseudo-élément */
+  font-size: 1.8rem;
+  color: var(--text-color);
+  margin-left: 4rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem; /* Ajout de padding pour plus d'espace */
+  transition: color 0.3s ease-in-out;
+  text-decoration: none; /* Supprime le soulignement */
+}
+
+.navbar a::before {
+  content: ""; /* Nécessaire pour afficher le pseudo-élément */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white; /* Remplit le fond de blanc */
+  border-radius: 5px; /* Ajoute des coins arrondis */
+  z-index: -1; /* Place le pseudo-élément derrière le texte */
+  opacity: 0; /* Initialement invisible */
+  transform: scale(0.8); /* Réduit légèrement la taille */
+  transition: all 0.3s ease-in-out; /* Animation fluide */
+}
+
+.navbar a:hover {
+  color: rgba(83, 114, 122, 0.5); /* Change la couleur du texte au survol */
+}
+
+.navbar a:hover::before {
+  opacity: 1; /* Rend le fond visible */
+  transform: scale(1); /* Agrandit le fond à sa taille normale */
+}
+
+.gradiant-btn {
+  font-size: 1.8rem;
+  padding: 1rem 2rem;
+  border-radius:  3rem;
+  background: linear-gradient(
+    270deg,
+    #2d3035 10%,
+    #798aa3 100%
+  );
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  color: white;
+  border: none;
+  text-wrap: nowrap;
+}
+
+.gradiant-btn:hover {
+  transform: scale(1.05);
+}
+
+section {
+  min-height: 100vh;
+  padding: 10rem 15%;
+}
+
+.home {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15rem;
+}
+
+.home-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  opacity: 0; /* Initialement invisible */
+  animation: fadeInUp 1s ease-in-out forwards;
+  animation-delay: 0.2s; /* Décalage pour le contenu */
+  margin-top: 5%;
+}
+
+.home-content h1 {
+  font-size: 6rem;
+  font-weight: 700;
+  margin-top: 1.5rem;
+  line-height: 1;
+}
+
+.home-content h3 {
+  margin: 1rem 0;
+  font-size: 3rem;
+
+}
+
+.home-content p {
+  font-size: 1.3rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.home-img {
+  opacity: 0; /* Initialement invisible */
+  animation: fadeInUp 1s ease-in-out forwards;
+  animation-delay: 0.4s; /* Décalage pour l'image */
+  position: relative; /* Nécessaire pour positionner les pseudo-éléments */
+  margin-top: 5%;
+}
+
+.home-img::before,
+.home-img::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120%; /* Taille de l'onde */
+  height: 120%; /* Taille de l'onde */
+  border-radius: 50%; /* Forme circulaire */
+  transform: translate(-50%, -50%) scale(1);
+  background: rgba(121, 138, 163, 0.5); /* Couleur de l'onde */
+  animation: wave 3s infinite ease-in-out;
+  z-index: -1; /* Place derrière l'image */
+}
+
+.home-img::after {
+  animation-delay: 1.5s; /* Décalage pour la deuxième onde */
+}
+
+.home-img img {
+  width: 34vw;
+  border-radius: 50%;
+  box-shadow: 0 0 25px var(--main-color);
+  transition: 0.4s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+  box-shadow: 0 0 25px var(--main-color),
+              0 0 50px var(--main-color),
+              0 0 100px var(--main-color)
+}
+
+.social-icons a{
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  padding: 1rem;
+  background: transparent;
+  border: 2px solid var(--main-color);
+  border-radius: 50%;
+  color: var(--main-color);
+  margin: 3rem 0.5rem;
+  transition: 0.3s ease-in-out;
+  animation: verticalMove 2s infinite; /* Animation ajoutée */
+}
+
+.social-icons a:nth-child(1) {
+  animation-delay: 0s; /* Décalage pour la première icône */
+}
+
+.social-icons a:nth-child(2) {
+  animation-delay: 0.3s; /* Décalage pour la deuxième icône */
+}
+
+.social-icons a:nth-child(3) {
+  animation-delay: 0.6s; /* Décalage pour la troisième icône */
+}
+
+.social-icons a:nth-child(4) {
+  animation-delay: 0.8s; /* Décalage pour la troisième icône */
+}
+
+.social-icons a:hover {
+  color: var(--text-color);
+  background-color: var(--main-color);
+  transform: scale(1.2) translateY(-5px); /* Effet supplémentaire au survol */
+  box-shadow: 0 0 25px var(--main-color);
+}
+
+
+
+.btn-group {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 1rem 3rem;
+  background-color: #798aa3;
+  box-shadow: 0 0 25px var(--main-color);
+  border-radius: 3rem;
+  font-size: 1.8rem;
+  color: black;
+  border: 2px solid transparent;
+  font-weight: 600;
+  transition: 0.3s ease-in-out;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #000000,
+              0 0 25px #798aa3,
+              0 0 50px #798aa3;
+              
+}
+
+.btn-group a:nth-of-type(2){
+  background-color: black;
+  color: var(--main-color);
+  border: 2px solid var(--main-color);
+  box-shadow: 0 0 25px transparent;
+}
+
+.btn-group a:nth-of-type(2):hover {
+  box-shadow: 0 0 25px var(--main-color);
+  background-color: var(--main-color);
+  color: black;
+}
+
+.about {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10rem;
+  background: var(--second-bg-color);
+}
+
+.about-img img {
+  width: 32vw;
+  border: 50%;
+  box-shadow: 0 0 20px var(--second-bg-color);
+  transition: 0.4s ease-in-out;
+  border-radius: 50%;
+}
+
+.about-img img:hover {
+  box-shadow: 0 0 50px black,
+              0 0 100px var(--second-bg-color);
+}
+
+.about-content h2{
+  font-size: 7rem;
+  text-align: left;
+}
+
+.about-content p {
+  font-size: 1.8rem;
+}
+
+.about-content .btn {
+  margin: 3rem 0;
+}
+
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  box-shadow: inset 0 0 5px rgba(255, 255, 255, 1);
+  transition: all 0.5s ease-in-out;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.4);
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 1);
+}
+
+::-webkit-scrollbar-track {
+  background: linear-gradient(180deg, var(--bg-color), var(--second-bg-color));
+}
+
+.heading {
+  text-align: center;
+  font-size: 7rem;
+  margin: 5rem 0;
+}
+
+.services {
+  background-color: var(--bg-color);
+  color: black;
+}
+
+.services h2 {
+  color: var(--text-color);
+}
+
+.services-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.service-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--second-bg-color);
+  height: 600px;
+  border-radius: 3rem;
+  cursor: pointer;
+  border: 5px solid transparent;
+  transition: 0.4s ease-in-out;
+}
+
+.service-box:nth-child(1) {
+  animation: verticalMove 2s infinite;
+  animation-delay: 0s; 
+}
+
+.service-box:nth-child(2) {
+  animation: verticalMove 2s infinite;
+  animation-delay: 0.5s;
+}
+
+.service-box:nth-child(3) {
+  animation: verticalMove 2s infinite;
+  animation-delay: 1s; 
+}
+
+@keyframes verticalMove {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes gradientScroll {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 250% 50%; /* Étend la zone d'animation */
+  }
+}
+
+@keyframes wave {
+  0% {
+    transform: translate(-50%, -50%) scale(0.75);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.05); /* Agrandit l'onde */
+    opacity: 0; /* Disparaît progressivement */
+  }
+}
+
+.service-box:hover {
+  background: #798aa3;
+  color: var(--text-color);
+  border: 5px solid var(--text-color);
+  transform: scale(1.03);
+  box-shadow: 0 0 25px white;
+}
+
+.service-info {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  padding: 5rem;
+}
+
+.service-info h4 {
+  font-size: 4rem;
+  margin: 2rem 0;
+  font-weight: 800;
+}
+
+.service-info p {
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 1.7;
+}
+
+.service-info i {
+  font-size: 8rem;
+}
+
+.contact-btn {
+  background: linear-gradient(90deg, #798aa3, #2d3035, #798aa3);
+  background-size: 300% 100%; /* Étend la taille pour un défilement fluide */
+  background-clip: text;
+  -webkit-background-clip: text; /* Nécessaire pour les navigateurs Webkit */
+  color: transparent; 
+  animation: gradientScroll 4s linear infinite alternate; /* Animation fluide avec effet boomerang */
+  border: 2px solid var(--text-color); 
+  padding: 1rem 2rem;
+  font-size: 1.8rem;
+  border-radius: 3rem;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  font-weight: 800;
+}
+
+.contact-btn:hover {
+  transform: scale(1.05); /* Effet de zoom au survol */
+  color: var(--text-color);
+}
+
+.projects {
+  background: #BECEDE;
+  background: linear-gradient(0deg, rgba(190, 206, 222, 1) 0%, rgba(127, 155, 160, 1) 35%);
+}
+
+.projects-box {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  place-items: center;
+  gap: 3rem;
+  row-gap: 5rem;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: var(--bg-color);
+  border: 2px solid none;
+  border-radius: 3rem;
+  gap: 2rem;
+  padding: 5rem 2rem;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 0 5px var(--main-color);
+  transition: 0.5s ease;
+}
+
+.project-card:hover {
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.3),
+              0 0 50px rgba(0, 0, 0, 0.2);
+  transform: scale(1.02);
+}
+
+.project-card img {
+  max-width: 300px;
+  border-radius: 2rem;
+  object-fit: cover;
+}
+
+.project-card h3 {
+  font-size: 3rem;
+}
+
+.project-card p {
+  font-size: 1.6rem;
+}
+
+.project-card .btn:hover {
+  background-color: var(--second-bg-color);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3),
+              0 0 25px rgba(0, 0, 0, 0.2);
+  transform: scale(1);
+}
+
+/* Masque le formulaire par défaut */
+.hidden {
+  display: none;
+}
+
+#form-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+  backdrop-filter: blur(0px); /* Initialement sans flou */
+  -webkit-backdrop-filter: blur(0px); /* Compatibilité avec Safari */
+  z-index: 998; /* Place derrière le formulaire */
+  opacity: 0; /* Initialement invisible */
+  visibility: hidden; /* Empêche les clics lorsqu'il est masqué */
+  pointer-events: none; /* Désactive les interactions */
+  transition: opacity 1s ease, backdrop-filter 2s ease, -webkit-backdrop-filter 2s ease; /* Transition fluide */
+}
+
+#form-overlay.show {
+  opacity: 1; /* Visible */
+  visibility: visible; /* Permet les clics */
+  pointer-events: auto; /* Active les interactions */
+  backdrop-filter: blur(10px); /* Ajoute le flou */
+  -webkit-backdrop-filter: blur(10px); /* Compatibilité avec Safari */
+}
+
+#contact-form {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8); /* Position initiale avec réduction */
+  background-color: var(--bg-color);
+  padding: 2rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  z-index: 1000; /* Place au-dessus du fond flou */
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  opacity: 0; /* Initialement invisible */
+  pointer-events: none; /* Désactive les interactions */
+  transition: all 0.3s ease-in-out; /* Animation fluide */
+}
+
+/* Formulaire visible avec animation */
+#contact-form.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1); /* Position finale */
+  pointer-events: auto; /* Active les interactions */
+}
+
+/* Boutons du formulaire */
+#contact-form .form-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+#cancel-form-btn {
+  background-color: var(--second-bg-color);
+}
+
+#cancel-form-btn:hover {
+  background-color: var(--text-color);
+  color: var(--second-bg-color);
+}
+
+#contact-form {
+  margin-top: 2rem;
+  padding: 2rem;
+  border: 2px solid var(--main-color);
+  border-radius: 1.5rem;
+  background-color: var(--bg-color);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+#contact-form input,
+#contact-form textarea {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.75);
+  border-radius: 1rem;
+  background-color: rgba(0, 0, 0, 0.15);
+  color: var(--text-color);
+  font-size: 1.6rem;
+  outline: none;
+  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+#contact-form input:hover,
+#contact-form textarea:hover {
+  border-color: var(--text-color);
+  box-shadow: 0 0 10px var(--main-color);
+}
+
+#contact-form input:focus,
+#contact-form textarea:focus {
+  border: 2px solid var(--main-color);
+}
+
+#contact-form input::placeholder,
+#contact-form textarea::placeholder {
+  color: rgba(255, 255, 255, 0.8); /* Couleur blanche avec transparence */
+  font-style: oblique;
+}
+
+#contact-form textarea {
+  resize: none;
+  height: 150px;
+}
+
+#contact-form button {
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 1rem;
+  background-color: var(--main-color);
+  color: var(--text-color);
+  font-size: 1.6rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+#contact-form button:hover {
+  background-color: var(--text-color);
+  color: var(--main-color);
+  transform: scale(1.05);
+}
+
+#contact-form .form-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+#cancel-form-btn {
+  background-color: var(--second-bg-color);
+}
+
+#cancel-form-btn:hover {
+  background-color: var(--text-color);
+  color: var(--second-bg-color);
+}
+
+/* Désactive le défilement */
+.no-scroll {
+  overflow: hidden;
+}
+
+.project-card img {
+  width: 100%; /* Adapte la largeur de la vidéo à la carte */
+  height: auto; /* Conserve les proportions de la vidéo */
+  border-radius: 10px; /* Ajoute des coins arrondis si nécessaire */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ajoute une ombre */
+  object-fit: cover; /* S'assure que la vidéo remplit bien l'espace */
+}
+
+
+/* Styles spécifiques pour btn-disappear */
+.project-card .btn-disappear {
+  display: inline-block;
+  padding: 1rem 3rem;
+  background-color: #80848ab4;
+  box-shadow: 0 0 25px #80848ab4;
+  border-radius: 3rem;
+  font-size: 1.8rem;
+  color: black;
+  border: 2px solid transparent;
+  font-weight: 600;
+  transition: 0.3s ease-in-out;
+ /* Épaissit la barre (facultatif) */
+}
+
+.project-card .btn-disappear:hover {
+  opacity: 0.7; /* Rend le bouton invisible */
+  transform: scale(0.95); /* Déplace légèrement le bouton vers le haut */
+  background-color: #525353;
+  text-decoration: line-through; /* Barre le texte */
+  text-decoration-color: #ff0000; /* Définit la couleur de la barre */
+  text-decoration-thickness: 2px;
+}
+
+footer {
+  background-color: var(--bg-color);
+  padding: 5px 0;
+}
+
+.footer .social-icons {
+  text-align: center;
+}
+
+.footer ul {
+  text-align: center;
+  font-size: 1.8em;
+}
+
+.footer ul li {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.footer ul li a {
+  color: var(--text-color);
+  border-bottom: 3px solid transparent;
+  transition: 0.3s ease-in-out;
+}
+
+.footer ul li a:hover {
+  border-bottom: 3px solid var(--main-color);
+}
+
+.footer .copyright {
+  text-align: center;
+  font-size: 16px;
+}
+
+.pizza-card {
+  background-color: #989fa0; /* Gris-bleu */
+  color: white; /* Couleur du texte pour contraster */
+}
+
+@media(max-width: 1285px) {
+  #menu-icon {
+    display: block;
+    color: var(--text-color);
+  }
+
+  .header {
+    border-bottom-right-radius: 0%;
+  }
+
+  .navbar {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 50%;
+    padding: 1rem 3rem;
+    background: rgba(0, 0, 0, 0.8);
+    border-bottom-left-radius: 2rem;
+    border-left: 2px solid var(--main-color);
+    border-bottom: 2px solid var(--main-color);
+     display: none;
+     text-align: center;
+  }
+
+  .navbar a {
+    display: block;
+    font-size: 2rem;
+    margin: 3rem 0;
+    color: var(--text-color);
+  }
+
+  .navbar.active {
+    display: block;
+  }
+
+  .gradiant-btn {
+    display: none;
+  }
+
+  .home {
+    flex-direction: column-reverse;
+    margin: 5rem 0;
+    gap: 5rem;
+  }
+
+  .home-content {
+    align-items: center;
+    text-align: center;
+  }
+
+  .home-img img {
+    width: 56vw;
+  }
+
+  .home h1 {
+    font-size: 6rem;
+  }
+  .home h3 {
+    font-size: 3rem;
+  }
+
+  .about {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+
+  .about h2 {
+    text-align: center;
+    margin: 2rem 0;
+  }
+
+  .about img {
+    width: 52vw;
+  }
+}
+
+@media (max-width: 700px) {
+  .heading {
+    font-size: 7rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .heading {
+    font-size: 6rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .heading {
+    font-size: 4rem;
+    text-align: center; /* Centre le texte */
+  }
+  
+  .services-container, .projects-box {
+    grid-template-columns: 1fr; /* Une seule colonne pour centrer les cartes */
+    gap: 1.5rem; /* Réduisez l'espace entre les cartes */
+  }
+
+  .service-box, .project-card {
+    width: 90%; /* Réduisez la largeur des cartes */
+    margin: 0 auto; /* Centre les cartes horizontalement */
+  }
+
+  .services-container {
+    display: flex; /* Change le comportement en flexbox */
+    flex-direction: column; /* Affiche les services en colonne */
+    align-items: center; /* Centre les services horizontalement */
+    gap: 1.5rem; /* Ajoute un espace entre les services */
+  }
+
+  .service-box {
+    width: 90%; /* Réduit la largeur des services */
+    margin: 0 auto; /* Centre les services horizontalement */
+  }
+}
+
+@media (max-width: 400px) {
+
+  .heading {
+    font-size: 4rem;
+  }
+
+  .home-content h1 {
+    font-size: 5rem;
+  }
+
+  .home-content h3 {
+    font-size: 2.5rem;
+  }
+
+  .home-content p {
+    font-size: 1.4rem;
+  }
+
+  .home-img img {
+    width: 70vw;
+  }
+
+  .about img {
+    width: 80vw;
+  }
+}
+
+@media (max-width: 405px) {
+  .FAQ {
+    display: none;
+  }
+
+  .footer ul li {
+    margin-left: 0px;
+    margin: 5px;
+  }
+}
