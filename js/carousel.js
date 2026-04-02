@@ -1325,10 +1325,10 @@ const GalleryManager = (function() {
   const photoImages = [
     'assets/img/gallery/photo1.png',
     'assets/img/gallery/photo2.png',
-    'assets/img/gallery/photo3.png',
+    'assets/img/gallery/photo6.png',
     'assets/img/gallery/photo4.png',
     'assets/img/gallery/photo5.png',
-    'assets/img/gallery/photo6.png',
+    'assets/img/gallery/photo3.png',
     'assets/img/gallery/photo7.png',
     'assets/img/gallery/photo10.jpg',
     'assets/img/gallery/photo11.png',
