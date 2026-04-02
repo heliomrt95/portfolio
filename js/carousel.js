@@ -432,6 +432,37 @@ document.addEventListener('DOMContentLoaded', () => {
     devWeb: devCarousel,
     creativeNumerique: creativeCarousel
   };
+
+  // Navigation clavier globale : détecte quel carrousel est le plus visible
+  const carouselEntries = [
+    { instance: devCarousel, el: document.querySelector('[data-carousel="dev-web"]'), ratio: 0 },
+    { instance: creativeCarousel, el: document.querySelector('[data-carousel="creation-numerique"]'), ratio: 0 }
+  ].filter(c => c.el);
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const found = carouselEntries.find(c => c.el === entry.target);
+      if (found) found.ratio = entry.intersectionRatio;
+    });
+  }, { threshold: Array.from({ length: 11 }, (_, i) => i / 10) });
+
+  carouselEntries.forEach(c => observer.observe(c.el));
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+    // Ne pas interférer si une modal est ouverte ou un input est actif
+    const tag = document.activeElement?.tagName;
+    if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+    if (document.querySelector('.gallery-modal.active')) return;
+
+    // Choisir le carrousel le plus visible
+    const active = carouselEntries.reduce((a, b) => a.ratio >= b.ratio ? a : b);
+    if (active.ratio === 0) return;
+
+    e.preventDefault();
+    if (e.key === 'ArrowLeft') active.instance.prev();
+    else active.instance.next();
+  });
 });
 
 /* ========================================
