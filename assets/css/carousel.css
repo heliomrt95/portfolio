@@ -100,8 +100,8 @@
 
 /* Wrapper 3D - reçoit la rotation du carrousel */
 .carousel-3d {
-  width: 320px;
-  height: 500px;
+  width: 288px;
+  height: 450px;
   position: relative;
   /* Essentiel pour le rendu 3D des enfants */
   transform-style: preserve-3d;
