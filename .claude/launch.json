@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "portfolio",
+      "runtimeExecutable": "ruby",
+      "runtimeArgs": ["-run", "-e", "httpd", "/Users/ipatate/Documents/dev/2025/portfolio", "-p", "3000"],
+      "port": 3000
+    }
+  ]
+}
