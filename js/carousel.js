@@ -1404,9 +1404,6 @@ const GalleryManager = (function() {
     
     masonryGrid.innerHTML = '';
     
-    // Nombre d'images à charger immédiatement (visibles en premier)
-    const immediateLoadCount = 4;
-    
     currentImages.forEach((src, index) => {
       const item = document.createElement('div');
       item.className = 'gallery-modal__masonry-item';
@@ -1416,14 +1413,8 @@ const GalleryManager = (function() {
       img.alt = `Photo ${index + 1}`;
       img.decoding = 'async';
       
-      // Précharger immédiatement les premières images, lazy pour le reste
-      if (index < immediateLoadCount) {
-        img.loading = 'eager';
-        img.src = src;
-      } else {
-        img.loading = 'lazy';
-        img.src = src;
-      }
+      img.loading = 'eager';
+      img.src = src;
       
       item.appendChild(img);
       masonryGrid.appendChild(item);
