@@ -1330,11 +1330,9 @@ const GalleryManager = (function() {
     'assets/img/gallery/photo5.png',
     'assets/img/gallery/photo6.png',
     'assets/img/gallery/photo7.png',
-    'assets/img/gallery/photo8.png',
-    'assets/img/gallery/photo9.png',
-    'assets/img/gallery/photo12.png',
+    'assets/img/gallery/photo10.jpg',
     'assets/img/gallery/photo11.png',
-    'assets/img/gallery/photo10.jpg'
+    'assets/img/gallery/photo12.png'
   ];
   
   // Images pour la galerie affiches
