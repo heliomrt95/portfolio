@@ -42,7 +42,7 @@ html.no-scroll body {
   width: 100%;
   top: 0;
   left: 0;
-  padding: 4rem 15%;
+  padding: 2rem 15%;
   background: rgba(83, 114, 122, 0.3);
   backdrop-filter: blur(10px);
   display: flex;
