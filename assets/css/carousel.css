@@ -1839,7 +1839,6 @@
   overflow-x: hidden;
   columns: 4;
   column-gap: 1rem;
-  column-fill: auto;
   padding-right: 0.5rem;
 }
 
