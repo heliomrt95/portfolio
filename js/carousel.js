@@ -58,21 +58,21 @@ function initCarousel(containerSelector) {
     const screenWidth = window.innerWidth;
     let cardWidth = 320;
     let minRadius = 350;
-    let maxRadius = 600;
+    let maxRadius = 420;
 
     // Adapter selon la taille d'écran
     if (screenWidth <= 480) {
       cardWidth = 240;
       minRadius = 280;
-      maxRadius = 400;
+      maxRadius = 300;
     } else if (screenWidth <= 768) {
       cardWidth = 260;
       minRadius = 300;
-      maxRadius = 450;
+      maxRadius = 340;
     } else if (screenWidth <= 1024) {
       cardWidth = 280;
       minRadius = 320;
-      maxRadius = 500;
+      maxRadius = 380;
     }
 
     // Formule basée sur la circonférence
