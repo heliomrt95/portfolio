@@ -52,17 +52,27 @@ function initCarousel(containerSelector) {
 
   // ========== CALCUL DU RAYON (RESPONSIVE) ==========
   /**
-   * Calcule le rayon optimal selon la taille d'écran et nombre de cartes
+   * Calcule le rayon optimal selon la taille d'écran et nombre de cartes.
+   * Garantit un espacement minimum entre cartes voisines pour éviter le chevauchement
+   * quand le carrousel contient beaucoup de cartes.
    */
   function calculateRadius() {
     const screenWidth = window.innerWidth;
 
-    // Rayon fixe par breakpoint : indépendant du nombre de cartes
-    // pour que la carte centrale garde toujours la même taille visuelle.
-    if (screenWidth <= 480) return 230;
-    if (screenWidth <= 768) return 260;
-    if (screenWidth <= 1024) return 290;
-    return 320;
+    // Rayon minimum par breakpoint (pour les carrousels à peu de cartes)
+    let baseRadius, cardWidth;
+    if (screenWidth <= 480)       { baseRadius = 230; cardWidth = 240; }
+    else if (screenWidth <= 768)  { baseRadius = 260; cardWidth = 260; }
+    else if (screenWidth <= 1024) { baseRadius = 290; cardWidth = 280; }
+    else                          { baseRadius = 320; cardWidth = 288; }
+
+    // Espacement visuel souhaité entre deux cartes voisines
+    const gap = screenWidth <= 768 ? 24 : 40;
+
+    // Rayon nécessaire pour que la distance entre centres = cardWidth + gap
+    const requiredRadius = (cardWidth + gap) / (2 * Math.sin(Math.PI / totalCards));
+
+    return Math.max(baseRadius, requiredRadius);
   }
 
   // ========== POSITIONNEMENT DES CARTES ==========
