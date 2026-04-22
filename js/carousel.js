@@ -67,7 +67,7 @@ function initCarousel(containerSelector) {
     else                          { baseRadius = 320; cardWidth = 288; }
 
     // Espacement visuel souhaité entre deux cartes voisines
-    const gap = screenWidth <= 768 ? 24 : 40;
+    const gap = screenWidth <= 768 ? 60 : 100;
 
     // Rayon nécessaire pour que la distance entre centres = cardWidth + gap
     const requiredRadius = (cardWidth + gap) / (2 * Math.sin(Math.PI / totalCards));
@@ -77,11 +77,22 @@ function initCarousel(containerSelector) {
 
   // ========== POSITIONNEMENT DES CARTES ==========
   /**
-   * Positionne chaque carte sur le cercle 3D
+   * Positionne chaque carte sur le cercle 3D.
+   * Ajuste aussi la perspective pour que la carte centrale garde
+   * la même taille visuelle quel que soit le rayon.
    */
   function positionCards() {
     radius = calculateRadius();
-    
+
+    // Référence historique : perspective 1200px, radius 320px → ratio 1.3636
+    // Pour garder la même taille visuelle : P / (P - R) = ratioRef
+    // → P = R * ratioRef / (ratioRef - 1)
+    const refPerspective = 1200;
+    const refRadius = 320;
+    const ratio = refPerspective / (refPerspective - refRadius);
+    const perspective = radius * ratio / (ratio - 1);
+    container.style.perspective = `${perspective}px`;
+
     cards.forEach((card, index) => {
       const angle = index * anglePerCard;
       card.style.transform = `rotateY(${angle}deg) translateZ(${radius}px)`;
