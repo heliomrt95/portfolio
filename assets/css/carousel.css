@@ -295,6 +295,10 @@
   flex-shrink: 0;
 }
 
+.carousel-card__title--compact {
+  font-size: 1.8rem;
+}
+
 .carousel-card__description {
   font-size: 1.4rem;
   line-height: 1.6;

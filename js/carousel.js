@@ -56,31 +56,13 @@ function initCarousel(containerSelector) {
    */
   function calculateRadius() {
     const screenWidth = window.innerWidth;
-    let cardWidth = 320;
-    let minRadius = 350;
-    let maxRadius = 420;
 
-    // Adapter selon la taille d'écran
-    if (screenWidth <= 480) {
-      cardWidth = 240;
-      minRadius = 280;
-      maxRadius = 300;
-    } else if (screenWidth <= 768) {
-      cardWidth = 260;
-      minRadius = 300;
-      maxRadius = 340;
-    } else if (screenWidth <= 1024) {
-      cardWidth = 280;
-      minRadius = 320;
-      maxRadius = 380;
-    }
-
-    // Formule basée sur la circonférence
-    const spacing = screenWidth <= 768 ? 20 : 40;
-    const circumference = totalCards * (cardWidth + spacing);
-    const calculatedRadius = circumference / (2 * Math.PI);
-
-    return Math.min(Math.max(calculatedRadius, minRadius), maxRadius);
+    // Rayon fixe par breakpoint : indépendant du nombre de cartes
+    // pour que la carte centrale garde toujours la même taille visuelle.
+    if (screenWidth <= 480) return 230;
+    if (screenWidth <= 768) return 260;
+    if (screenWidth <= 1024) return 290;
+    return 320;
   }
 
   // ========== POSITIONNEMENT DES CARTES ==========
