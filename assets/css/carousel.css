@@ -356,7 +356,7 @@
   align-items: center;
   justify-content: center;
   gap: 2rem;
-  margin-top: 4rem;
+  margin-top: 1.5rem;
 }
 
 /* Boutons précédent / suivant */
@@ -522,7 +522,7 @@
   }
 
   .carousel-controls {
-    margin-top: 3rem;
+    margin-top: 1rem;
   }
 
   .carousel-control {
