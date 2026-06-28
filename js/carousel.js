@@ -358,15 +358,17 @@ function initCarousel(containerSelector) {
 
   // ========== SCROLL HORIZONTAL (PAVÉ TACTILE 2 DOIGTS) ==========
   const wheelState = {
-    active: false,
-    rotation: 0,
-    endTimeout: null
+    locked: false,             // Verrou : une seule carte par geste
+    endTimeout: null,          // Détecte la fin du geste (inertie incluse)
+    threshold: 4               // Delta minimum pour déclencher
   };
 
   /**
    * Permet de naviguer dans le carrousel avec un scroll horizontal
-   * (2 doigts sur le pavé tactile -> deltaX). Le scroll vertical est
-   * laissé à la page pour ne pas bloquer le défilement normal.
+   * (2 doigts sur le pavé tactile -> deltaX). On ne se déplace que d'une
+   * seule carte par geste, même si le scroll est rapide/fort : un verrou
+   * ignore le reste du flux (et l'inertie) jusqu'à l'arrêt complet.
+   * Le scroll vertical est laissé à la page.
    */
   function handleWheel(e) {
     // Ne réagir qu'au défilement horizontal (intention claire)
@@ -375,27 +377,22 @@ function initCarousel(containerSelector) {
     // Empêche le swipe « précédent/suivant » du navigateur et le scroll latéral
     e.preventDefault();
 
-    // Normaliser si le delta est exprimé en lignes plutôt qu'en pixels
-    const deltaX = e.deltaMode === 1 ? e.deltaX * 16 : e.deltaX;
-
-    // Démarrer un nouveau geste à partir de la rotation courante
-    if (!wheelState.active) {
-      wheelState.active = true;
-      wheelState.rotation = currentRotation;
-    }
-
-    // Conversion pixels -> degrés (scroll vers la droite => carte suivante)
-    const sensitivity = 0.2;
-    wheelState.rotation -= deltaX * sensitivity;
-    rotateBy(wheelState.rotation);
-
-    // Snap vers la carte la plus proche une fois le scroll terminé
+    // Tant que des évènements arrivent (geste + inertie), on garde le verrou.
+    // Il ne se libère qu'après un court silence => prochain geste possible.
     clearTimeout(wheelState.endTimeout);
     wheelState.endTimeout = setTimeout(() => {
-      wheelState.active = false;
-      const targetIndex = Math.round(-wheelState.rotation / anglePerCard);
-      rotateTo(targetIndex, true);
-    }, 120);
+      wheelState.locked = false;
+    }, 150);
+
+    // Déjà déplacé pour ce geste : on ignore le reste du flux
+    if (wheelState.locked) return;
+    if (Math.abs(e.deltaX) < wheelState.threshold) return;
+
+    wheelState.locked = true;
+
+    // Scroll vers la droite => carte suivante, vers la gauche => précédente
+    if (e.deltaX > 0) next();
+    else prev();
   }
 
   // ========== RESIZE (DEBOUNCED) ==========
