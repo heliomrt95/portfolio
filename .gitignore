@@ -1,0 +1,12 @@
+# OS
+.DS_Store
+**/.DS_Store
+
+# Secrets / environnement
+.env
+.env.*
+*.pem
+*.key
+
+# Logs
+*.log

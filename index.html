@@ -1,11 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio Website</title>
-  
+  <title>Helio Martone — Développeur Web | Portfolio</title>
+  <meta name="description" content="Portfolio de Helio Martone, jeune développeur web de 18 ans en BUT MMI. Découvrez mes projets web, mes créations multimédia et mon parcours." />
+  <link rel="canonical" href="https://heliomrt95.github.io/portfolio/" />
+
+  <!-- Open Graph / réseaux sociaux -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Helio Martone — Développeur Web" />
+  <meta property="og:description" content="Portfolio de Helio Martone, jeune développeur web en BUT MMI. Projets web, créations multimédia et parcours." />
+  <meta property="og:url" content="https://heliomrt95.github.io/portfolio/" />
+  <meta property="og:image" content="https://heliomrt95.github.io/portfolio/assets/img/image2.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Helio Martone — Développeur Web" />
+  <meta name="twitter:description" content="Portfolio de Helio Martone, jeune développeur web en BUT MMI. Projets web, créations multimédia et parcours." />
+  <meta name="twitter:image" content="https://heliomrt95.github.io/portfolio/assets/img/image2.png" />
+
   <!-- Preload ressources critiques -->
   <link rel="preload" href="assets/img/image2.png" as="image" />
   
@@ -163,10 +176,10 @@
     </div>
   </div>
 
-  <form id="contact-form" action="send_email.php" method="post">
-    <input type="text" name="name" placeholder="Votre nom" required>
-    <input type="email" name="email" placeholder="Votre email" required>
-    <textarea name="message" placeholder="Votre message" required></textarea>
+  <form id="contact-form" method="post">
+    <input type="text" name="name" placeholder="Votre nom" aria-label="Votre nom" required>
+    <input type="email" name="email" placeholder="Votre email" aria-label="Votre email" required>
+    <textarea name="message" placeholder="Votre message" aria-label="Votre message" required></textarea>
     <div class="form-buttons">
       <button type="submit">Envoyer</button>
       <button type="button" id="cancel-form-btn">Annuler</button>
@@ -501,7 +514,7 @@
               <p class="carousel-card__description">
                 Refonte complète du site de l'association de sauvetage de lévriers.
               </p>
-              <a href="https://levriers-du-sud.vercel.app/" target="_blank" class="carousel-card__btn">
+              <a href="https://levriers-du-sud.org/" target="_blank" class="carousel-card__btn">
                 Voir le projet <i class='bx bx-right-arrow-alt'></i>
               </a>
             </div>
@@ -791,7 +804,7 @@
   <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
   <script>
     (function () {
-      emailjs.init("service_jb956ot"); // Remplacez par votre User ID EmailJS
+      emailjs.init("omrEvwwnobHjoxzml"); // Clé publique EmailJS
     })();
   </script>
   
@@ -806,20 +819,6 @@
       // Images critiques à précharger (visibles immédiatement)
       const criticalImages = [
         'assets/img/image2.png'  // Image principale hero
-      ];
-      
-      // Images de la galerie photo à précharger
-      const galleryImages = [
-        'assets/img/gallery/photo1.png',
-        'assets/img/gallery/photo2.png',
-        'assets/img/gallery/photo3.png',
-        'assets/img/gallery/photo4.png',
-        'assets/img/gallery/photo5.png',
-        'assets/img/gallery/photo6.png',
-        'assets/img/gallery/photo7.png',
-        'assets/img/gallery/photo10.jpg',
-        'assets/img/gallery/photo11.png',
-        'assets/img/gallery/photo12.png'
       ];
       
       // Fonction pour précharger une image
@@ -845,7 +844,8 @@
         }, 500);
       }
       
-      // Attendre le chargement des ressources critiques + galerie
+      // Attendre le chargement des ressources critiques uniquement
+      // (la galerie photo se charge à l'ouverture de sa modale, pas au démarrage)
       Promise.all([
         // Attendre que le DOM soit prêt
         new Promise(resolve => {
@@ -856,9 +856,7 @@
           }
         }),
         // Précharger les images critiques
-        ...criticalImages.map(preloadImage),
-        // Précharger les images de la galerie
-        ...galleryImages.map(preloadImage)
+        ...criticalImages.map(preloadImage)
       ]).then(() => {
         // Délai minimum pour éviter un flash trop rapide
         setTimeout(hidePreloader, 300);
