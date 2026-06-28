@@ -356,6 +356,48 @@ function initCarousel(containerSelector) {
     }, 100);
   }
 
+  // ========== SCROLL HORIZONTAL (PAVÉ TACTILE 2 DOIGTS) ==========
+  const wheelState = {
+    active: false,
+    rotation: 0,
+    endTimeout: null
+  };
+
+  /**
+   * Permet de naviguer dans le carrousel avec un scroll horizontal
+   * (2 doigts sur le pavé tactile -> deltaX). Le scroll vertical est
+   * laissé à la page pour ne pas bloquer le défilement normal.
+   */
+  function handleWheel(e) {
+    // Ne réagir qu'au défilement horizontal (intention claire)
+    if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+
+    // Empêche le swipe « précédent/suivant » du navigateur et le scroll latéral
+    e.preventDefault();
+
+    // Normaliser si le delta est exprimé en lignes plutôt qu'en pixels
+    const deltaX = e.deltaMode === 1 ? e.deltaX * 16 : e.deltaX;
+
+    // Démarrer un nouveau geste à partir de la rotation courante
+    if (!wheelState.active) {
+      wheelState.active = true;
+      wheelState.rotation = currentRotation;
+    }
+
+    // Conversion pixels -> degrés (scroll vers la droite => carte suivante)
+    const sensitivity = 0.2;
+    wheelState.rotation -= deltaX * sensitivity;
+    rotateBy(wheelState.rotation);
+
+    // Snap vers la carte la plus proche une fois le scroll terminé
+    clearTimeout(wheelState.endTimeout);
+    wheelState.endTimeout = setTimeout(() => {
+      wheelState.active = false;
+      const targetIndex = Math.round(-wheelState.rotation / anglePerCard);
+      rotateTo(targetIndex, true);
+    }, 120);
+  }
+
   // ========== RESIZE (DEBOUNCED) ==========
   let resizeTimeout;
   function handleResize() {
@@ -389,6 +431,9 @@ function initCarousel(containerSelector) {
     container.addEventListener('touchstart', handleTouchStart, { passive: true });
     container.addEventListener('touchmove', handleTouchMove, { passive: false });
     container.addEventListener('touchend', handleTouchEnd);
+
+    // Scroll horizontal (pavé tactile 2 doigts)
+    container.addEventListener('wheel', handleWheel, { passive: false });
 
     // Resize
     window.addEventListener('resize', handleResize);
