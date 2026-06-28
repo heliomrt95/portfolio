@@ -751,19 +751,8 @@
     </div>
   </div>
 
-  <!-- Modal Vidéo - Plein écran avec fond flou -->
-  <div class="video-modal" id="video-modal">
-    <div class="video-modal__overlay"></div>
-    <div class="video-modal__content">
-      <button class="video-modal__close" id="video-modal-close">
-        <i class='bx bx-x'></i>
-      </button>
-      <video class="video-modal__player" id="video-modal-player" controls>
-        <source src="" type="video/mp4">
-        Votre navigateur ne supporte pas la lecture vidéo.
-      </video>
-    </div>
-  </div>
+  <!-- (2e modale vidéo retirée : doublon de l'ID #video-modal + code mort.
+       Seule la 1re modale ci-dessus, gérée par VideoModalManager, est active.) -->
 
   <footer class="footer scroll-reveal fade-in-up">
     <div class="social-icons">
