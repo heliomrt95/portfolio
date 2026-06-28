@@ -358,16 +358,18 @@ function initCarousel(containerSelector) {
 
   // ========== SCROLL HORIZONTAL (PAVÉ TACTILE 2 DOIGTS) ==========
   const wheelState = {
-    locked: false,             // Verrou : une seule carte par geste
-    endTimeout: null,          // Détecte la fin du geste (inertie incluse)
-    threshold: 4               // Delta minimum pour déclencher
+    engaged: false,            // Une carte déjà déclenchée pour le geste en cours
+    resetTimeout: null,        // Filet de sécurité si le flux s'arrête net
+    fireThreshold: 8,          // Delta mini pour déclencher un mouvement
+    releaseThreshold: 4        // Sous ce delta, le geste/inertie est considéré fini
   };
 
   /**
    * Permet de naviguer dans le carrousel avec un scroll horizontal
-   * (2 doigts sur le pavé tactile -> deltaX). On ne se déplace que d'une
-   * seule carte par geste, même si le scroll est rapide/fort : un verrou
-   * ignore le reste du flux (et l'inertie) jusqu'à l'arrêt complet.
+   * (2 doigts sur le pavé tactile -> deltaX). On se déplace d'une seule
+   * carte par geste, même sur un scroll fort : une fois la carte déclenchée,
+   * on ignore le reste du flux (et l'inertie) jusqu'à ce que le delta
+   * retombe sous le seuil -> le geste suivant peut alors agir aussitôt.
    * Le scroll vertical est laissé à la page.
    */
   function handleWheel(e) {
@@ -377,21 +379,29 @@ function initCarousel(containerSelector) {
     // Empêche le swipe « précédent/suivant » du navigateur et le scroll latéral
     e.preventDefault();
 
-    // Tant que des évènements arrivent (geste + inertie), on garde le verrou.
-    // Il ne se libère qu'après un court silence => prochain geste possible.
-    clearTimeout(wheelState.endTimeout);
-    wheelState.endTimeout = setTimeout(() => {
-      wheelState.locked = false;
-    }, 150);
+    // Normaliser si le delta est exprimé en lignes plutôt qu'en pixels
+    const deltaX = e.deltaMode === 1 ? e.deltaX * 16 : e.deltaX;
+    const absDelta = Math.abs(deltaX);
 
-    // Déjà déplacé pour ce geste : on ignore le reste du flux
-    if (wheelState.locked) return;
-    if (Math.abs(e.deltaX) < wheelState.threshold) return;
+    // Filet de sécurité : après un arrêt complet du flux, on réautorise un geste
+    clearTimeout(wheelState.resetTimeout);
+    wheelState.resetTimeout = setTimeout(() => {
+      wheelState.engaged = false;
+    }, 200);
 
-    wheelState.locked = true;
+    // Geste/inertie en cours de retombée : on attend qu'il faiblisse vraiment
+    if (wheelState.engaged) {
+      if (absDelta < wheelState.releaseThreshold) wheelState.engaged = false;
+      return;
+    }
+
+    // Pas encore engagé : il faut une vraie poussée pour bouger d'une carte
+    if (absDelta < wheelState.fireThreshold) return;
+
+    wheelState.engaged = true;
 
     // Scroll vers la droite => carte suivante, vers la gauche => précédente
-    if (e.deltaX > 0) next();
+    if (deltaX > 0) next();
     else prev();
   }
 
