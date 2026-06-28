@@ -93,8 +93,6 @@ if (carouselContactBtn) {
   document.getElementById('contact-form').addEventListener('submit', function (e) {
     e.preventDefault();
 
-    emailjs.init("omrEvwwnobHjoxzml"); // Remplacez par votre Public Key
-
     emailjs.sendForm('service_jb956ot', 'template_clhib1b', this)
       .then(function () {
         hideForm(); // Masque le formulaire après l'envoi

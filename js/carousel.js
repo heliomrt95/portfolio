@@ -1409,24 +1409,24 @@ const GalleryManager = (function() {
   
   // Images pour la galerie photo
   const photoImages = [
-    'assets/img/gallery/photo1.png',
-    'assets/img/gallery/photo2.png',
-    'assets/img/gallery/photo6.png',
-    'assets/img/gallery/photo4.png',
-    'assets/img/gallery/photo5.png',
-    'assets/img/gallery/photo3.png',
-    'assets/img/gallery/photo7.png',
-    'assets/img/gallery/photo10.jpg',
-    'assets/img/gallery/photo11.png',
-    'assets/img/gallery/photo12.png'
+    'assets/img/gallery/photo1.webp',
+    'assets/img/gallery/photo2.webp',
+    'assets/img/gallery/photo6.webp',
+    'assets/img/gallery/photo4.webp',
+    'assets/img/gallery/photo5.webp',
+    'assets/img/gallery/photo3.webp',
+    'assets/img/gallery/photo7.webp',
+    'assets/img/gallery/photo10.webp',
+    'assets/img/gallery/photo11.webp',
+    'assets/img/gallery/photo12.webp'
   ];
   
   // Images pour la galerie affiches
   const affichesImages = [
-    'assets/img/affiches/affiche1.png',
-    'assets/img/affiches/affiche2.png',
-    'assets/img/affiches/affiche3.png',
-    'assets/img/affiches/affiche4.png'
+    'assets/img/affiches/affiche1.webp',
+    'assets/img/affiches/affiche2.webp',
+    'assets/img/affiches/affiche3.webp',
+    'assets/img/affiches/affiche4.webp'
   ];
   
   // Références DOM

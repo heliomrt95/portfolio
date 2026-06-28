@@ -463,7 +463,7 @@ section {
   margin-bottom: 0.5rem;
 }
 
-.timeline-content h4 {
+.timeline-content h3 {
   font-size: 1.8rem;
   margin-bottom: 0.5rem;
   color: var(--text-color);
@@ -823,7 +823,7 @@ section {
   height: 100%;
 }
 
-.service-info h4 {
+.service-info h3 {
   font-size: 2.8rem;
   margin: 1rem 0;
   font-weight: 800;
@@ -1416,7 +1416,7 @@ footer {
     padding: 3rem;
   }
 
-  .service-info h4 {
+  .service-info h3 {
     font-size: 2.2rem;
   }
 
@@ -1473,5 +1473,23 @@ footer {
   .footer ul li {
     margin-left: 0px;
     margin: 5px;
+  }
+}
+
+/* ===== Accessibilité : respect de prefers-reduced-motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Garantir que le contenu révélé au scroll reste visible sans animation */
+  .scroll-reveal {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
