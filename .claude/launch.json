@@ -4,9 +4,8 @@
     {
       "name": "portfolio",
       "runtimeExecutable": "ruby",
-      "runtimeArgs": ["-run", "-e", "httpd", "/tmp/pf-preview", "-p", "4321"],
-      "port": 4321,
-      "autoPort": false
+      "runtimeArgs": ["-run", "-e", "httpd", "/Users/ipatate/Documents/dev/2025/portfolio", "-p", "3000"],
+      "port": 3000
     }
   ]
 }

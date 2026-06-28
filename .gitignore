@@ -10,3 +10,6 @@
 
 # Logs
 *.log
+
+# Rapports d'audit (gardés en local, non déployés sur GitHub Pages)
+audit-*.md
